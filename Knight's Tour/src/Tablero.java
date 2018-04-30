@@ -1,5 +1,7 @@
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
@@ -14,9 +16,13 @@ public class Tablero extends JPanel{
 	public ImageIcon[] over=new ImageIcon[2];
 	public ImageIcon[] caballito=new ImageIcon[2];
 	private Cuadro current;
+	private Image background;
 	Cuadro d;
 	public Tablero() {
 		super();
+		
+		background = new ImageIcon("src/img/chessBoard.jpg").getImage();
+		
 		pre[0]=new ImageIcon("src/img/Cuadro.png");
 		pre[1]=new ImageIcon("src/img/oscuro.png");
 		over[0]=new ImageIcon("src/img/over.png");
@@ -50,5 +56,9 @@ public class Tablero extends JPanel{
 	
 	public void setCurrent(Cuadro c) {
 		this.current=c;
+	}
+	
+	public void paintComponent(Graphics g) {
+		g.drawImage(this.background, 0, 0, this);
 	}
 }

@@ -1,5 +1,8 @@
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -21,6 +24,8 @@ public class PanelBotones extends JPanel{
 	
 	public PanelBotones(Tablero tablero) {
 		super();
+		this.setBackground(new Color(7,99,36));
+		
 		this.tablero = tablero;
 		lKnight = new JLabel("Knight's Tour",SwingConstants.CENTER);
 		lPor = new JLabel("por",SwingConstants.CENTER);
@@ -38,12 +43,16 @@ public class PanelBotones extends JPanel{
 		letras.add(lKnight);
 		letras.add(lPor);
 		letras.add(lNombres);
+		letras.setBackground(new Color(7,99,36));
 		this.add(letras);
 		this.add(botonEmpezar);
 		this.add(botonReiniciar);
 		
 		lKnight.setFont(lKnight.getFont().deriveFont(24.0f));
+		lKnight.setForeground(Color.WHITE);
+		lPor.setForeground(Color.WHITE);
 		lNombres.setFont(lNombres.getFont().deriveFont(22.0f));
+		lNombres.setForeground(Color.WHITE);
 		
 		botonEmpezar.addActionListener(new ActionListener() {
 
@@ -61,6 +70,7 @@ public class PanelBotones extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				tablero.setTablero();
+				Point p = new Point(tablero.getWidth(),tablero.getHeight());
 			}
 			
 		});

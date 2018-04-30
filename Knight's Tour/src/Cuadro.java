@@ -43,8 +43,6 @@ public class Cuadro extends JButton implements MouseListener{
 		}
 		t.setCurrent(this);
 		this.setActive();
-		Point p = new Point(t.getCurrent().getPosX(),t.getCurrent().getPosY());
-		System.out.println(p);
 	}
 
 	@Override
