@@ -15,7 +15,7 @@ public class Cuadro extends JButton implements MouseListener{
 	private int posX,posY;
 	private int id;
 	private boolean active=true;
-	private ImageIcon img,over;
+	private ImageIcon img,over,c;
 	private Tablero t;
 	public Cuadro(ImageIcon imagen, int x, int y,ImageIcon ovr, Tablero t) {
 		super(imagen);
@@ -24,13 +24,24 @@ public class Cuadro extends JButton implements MouseListener{
 		this.img=imagen;
 		this.over=ovr;
 		this.t=t;
+		this.c=c;
 		this.addMouseListener(this);
 		//this.setBounds(posX, posY, width, height);
 	}
 	
+	
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		Iterator<Cuadro> i =t.cuadros.iterator();
+		this.setIcon(this.c);
+		if(t.getCurrent()!=null) {
+			t.getCurrent().setActive();
+			t.getCurrent().borracaballo();
+		}
+		t.setCurrent(this);
+		this.setActive();
+		System.out.println(t.getCurrent().id);
 	}
 
 	@Override
@@ -62,11 +73,9 @@ public class Cuadro extends JButton implements MouseListener{
 	public void setActive() {
 		this.active=!this.active;
 	}
-	public void over() {
-		
+	public void borracaballo() {
+		this.setIcon(this.img);
 	}
-	public void left() {
-		
-	}
+	
 	
 }
