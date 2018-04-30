@@ -1,13 +1,16 @@
+import java.awt.Component;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class PanelBotones extends JPanel{
 
 	JLabel lKnight,
 		   lTour,
-		   lBy,
+		   lPor,
 		   lNombres;
 	JButton botonEmpezar,
 			botonReiniciar;
@@ -15,16 +18,18 @@ public class PanelBotones extends JPanel{
 	public PanelBotones(Tablero tablero) {
 		super();
 		lKnight = new JLabel("Knight's Tour");
-		lBy = new JLabel("by");
+		lPor = new JLabel("por");
 		lNombres = new JLabel("Brian y Rafa");
 		
 		
 		botonEmpezar = new JButton("Empezar");
 		botonReiniciar = new JButton("Reiniciar");
 		
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
 		this.add(lKnight);
-		this.add(lBy);
+		this.add(lPor);
 		this.add(lNombres);
 		this.add(botonEmpezar);
 		this.add(botonReiniciar);
@@ -44,7 +49,6 @@ public class PanelBotones extends JPanel{
 			}
 			
 		});
-		
 	}
 	
 }

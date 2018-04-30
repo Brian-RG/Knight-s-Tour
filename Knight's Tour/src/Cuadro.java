@@ -31,10 +31,6 @@ public class Cuadro extends JButton implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		Iterator<Cuadro> i =t.cuadros.iterator();
-		while(i.hasNext()) {
-			Cuadro f= i.next();
-			f.removeMouseListener(f.getMouseListeners()[0]);
-		}
 	}
 
 	@Override
