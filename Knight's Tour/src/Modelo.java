@@ -1,9 +1,11 @@
 import java.awt.Point;
+import java.util.Stack;
 
 public class Modelo {
 	
 	int n;
 	Celda[][] tablero;
+	Stack<Point> stack;
 	
 	public Modelo(int n) {
 		this.n = n;
@@ -28,9 +30,11 @@ public class Modelo {
 		}
 	}
 	
-	public boolean knightsTour(int x, int y) {
+	public Stack<Point> knightsTour(int x, int y) {
 		Point p = new Point(x,y);
-		return knightsTour(p,0);
+		stack = new Stack<>();
+		knightsTour(p,0);
+		return stack;
 	}
 	
 	private boolean knightsTour(Point p, int movimientos) {
@@ -44,6 +48,7 @@ public class Modelo {
 				if(mejorCamino >= 0) {
 					Point punto = new Point(posiblesCaminos[mejorCamino].getX(), posiblesCaminos[mejorCamino].getY());
 					if(knightsTour(punto, movimientos+1)) {
+						this.stack.push(punto);
 						return true;
 					} else {
 						posiblesCaminos[mejorCamino] = null;
