@@ -1,8 +1,14 @@
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 
 
 public class Knights extends JFrame{
-	public Tablero t= new Tablero();
+	
+	public Tablero t = new Tablero();
+	
+	public PanelBotones botones = new PanelBotones(t);
+	
 	public Knights() {
 		super();
 		//this.setSize(960,800);
@@ -10,7 +16,9 @@ public class Knights extends JFrame{
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(350,50);
-		this.add(t);
+		this.setLayout(new BorderLayout());
+		this.add(t, BorderLayout.CENTER);
+		this.add(botones, BorderLayout.WEST);
 		this.pack();
 	}
 	
