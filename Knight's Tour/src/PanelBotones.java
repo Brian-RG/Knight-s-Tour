@@ -1,4 +1,5 @@
 import java.awt.Component;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,30 +15,38 @@ public class PanelBotones extends JPanel{
 		   lNombres;
 	JButton botonEmpezar,
 			botonReiniciar;
+	Tablero tablero;
 	
 	public PanelBotones(Tablero tablero) {
 		super();
-		lKnight = new JLabel("Knight's Tour");
-		lPor = new JLabel("por");
-		lNombres = new JLabel("Brian y Rafa");
+		this.tablero = tablero;
+		lKnight = new JLabel("Knight's Tour",SwingConstants.CENTER);
+		lPor = new JLabel("por",SwingConstants.CENTER);
+		lNombres = new JLabel("Brian y Rafa",SwingConstants.CENTER);
 		
 		
 		botonEmpezar = new JButton("Empezar");
 		botonReiniciar = new JButton("Reiniciar");
 		
+		this.setLayout(new GridLayout(3,1));
 		
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		JPanel letras = new JPanel();
+		letras.setLayout(new GridLayout(3,1));
 
-		this.add(lKnight);
-		this.add(lPor);
-		this.add(lNombres);
+		letras.add(lKnight);
+		letras.add(lPor);
+		letras.add(lNombres);
+		this.add(letras);
 		this.add(botonEmpezar);
 		this.add(botonReiniciar);
+		
+		lKnight.setFont(lKnight.getFont().deriveFont(24.0f));
+		lNombres.setFont(lNombres.getFont().deriveFont(22.0f));
 		
 		botonEmpezar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
+				Modelo modelo = new Modelo(8);
 			}
 			
 		});
@@ -45,7 +54,7 @@ public class PanelBotones extends JPanel{
 		botonReiniciar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				
+				tablero.setTablero();
 			}
 			
 		});

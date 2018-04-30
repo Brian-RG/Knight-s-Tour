@@ -27,14 +27,18 @@ public class Tablero extends JPanel{
 		/*for(int i=0;i<64;i++) {
 			this.add(new Cuadro(pre[i%2],i,over[i%2]));
 		}*/
+		this.setTablero();
+		
+		
+	}
+	
+	public void setTablero() {
 		for(int i=0;i<8;i++) {
 			for(int j=0;j<8;j++) {
-				this.add(d=new Cuadro(pre[(((j%2)+i)%2)],(8*i+j),over[(((j%2)+i)%2)] ,this) );
+				this.add(d=new Cuadro(pre[(((j%2)+i)%2)],i,j,over[(((j%2)+i)%2)] ,this) );
 				cuadros.add(d);
 			}
 		}
-		
-		
 	}
 
 }

@@ -17,7 +17,7 @@ public class Cuadro extends JButton implements MouseListener{
 	private boolean active=true;
 	private ImageIcon img,over;
 	private Tablero t;
-	public Cuadro(ImageIcon imagen, int id,ImageIcon ovr, Tablero t) {
+	public Cuadro(ImageIcon imagen, int x, int y,ImageIcon ovr, Tablero t) {
 		super(imagen);
 		this.setMargin(new Insets(0,0,0,0));
 		this.id=id;
