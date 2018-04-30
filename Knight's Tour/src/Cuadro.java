@@ -1,6 +1,7 @@
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -17,10 +18,11 @@ public class Cuadro extends JButton implements MouseListener{
 	private boolean active=true;
 	private ImageIcon img,over,c;
 	private Tablero t;
-	public Cuadro(ImageIcon imagen, int x, int y,ImageIcon ovr, Tablero t) {
+	public Cuadro(ImageIcon imagen, int x, int y,ImageIcon ovr, Tablero t, ImageIcon c) {
 		super(imagen);
 		this.setMargin(new Insets(0,0,0,0));
-		this.id=id;
+		this.posX = x;
+		this.posY = y;
 		this.img=imagen;
 		this.over=ovr;
 		this.t=t;
@@ -41,7 +43,8 @@ public class Cuadro extends JButton implements MouseListener{
 		}
 		t.setCurrent(this);
 		this.setActive();
-		System.out.println(t.getCurrent().id);
+		Point p = new Point(t.getCurrent().getPosX(),t.getCurrent().getPosY());
+		System.out.println(p);
 	}
 
 	@Override
@@ -77,5 +80,12 @@ public class Cuadro extends JButton implements MouseListener{
 		this.setIcon(this.img);
 	}
 	
+	public int getPosX() {
+		return this.posX;
+	}
+	
+	public int getPosY() {
+		return this.posY;
+	}
 	
 }

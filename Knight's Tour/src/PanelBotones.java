@@ -1,8 +1,10 @@
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -46,7 +48,11 @@ public class PanelBotones extends JPanel{
 		botonEmpezar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				Modelo modelo = new Modelo(8);
+				if(tablero.getCurrent() != null) {
+					Modelo modelo = new Modelo(8);
+					Stack<Point> stack = modelo.knightsTour(tablero.getCurrent().getPosX(), tablero.getCurrent().getPosY());
+					modelo.imprimeTablero();
+				}
 			}
 			
 		});
