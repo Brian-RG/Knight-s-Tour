@@ -66,6 +66,7 @@ public class PanelBotones extends JPanel{
 							d.deactivate();
 						}
 					}
+					botonEmpezar.setEnabled(false);
 				}
 			}
 			
@@ -75,6 +76,7 @@ public class PanelBotones extends JPanel{
 
 			public void actionPerformed(ActionEvent e) {
 				tablero.reiniciarTablero();
+				botonEmpezar.setEnabled(true);
 			}
 			
 		});

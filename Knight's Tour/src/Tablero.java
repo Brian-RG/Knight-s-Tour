@@ -36,7 +36,6 @@ public class Tablero extends JPanel implements Runnable{
 		this.setPreferredSize(new Dimension(600,600));
 		this.setLayout(new GridLayout(8,8));
 		this.setBorder(BorderFactory.createEmptyBorder(36, 36, 36,36));
-		this.animar= new Thread(this);
 		//this.animar.start();
 		current=null;
 		this.setTablero();
@@ -69,7 +68,8 @@ public class Tablero extends JPanel implements Runnable{
 	
 	public void resuelve(Stack<Point> stack) {
 		this.pasos=stack;
-		animar.start();
+		this.animar= new Thread(this);
+		this.animar.start();
 	}
 
 	public Cuadro[][] getCuadros() {
@@ -94,12 +94,7 @@ public class Tablero extends JPanel implements Runnable{
 	
 	public void reiniciarTablero() {
 		this.removeAll();
-		for(int i=0;i<8;i++) {
-			for(int j=0;j<8;j++) {
-				this.add(d=new Cuadro(pre[(((j%2)+i)%2)],i,j,over[(((j%2)+i)%2)] ,this, caballito[(((j%2)+i)%2)]) );
-				cuadros[i][j]=d;
-			}
-		}
+		this.setTablero();
 		this.revalidate();
 		this.repaint();
 	}
