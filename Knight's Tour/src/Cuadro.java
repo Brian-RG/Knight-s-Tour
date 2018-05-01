@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -36,6 +37,7 @@ public class Cuadro extends JButton implements MouseListener{
 		numero= new JLabel("");
 		this.add(numero);
 		numero.setHorizontalAlignment(SwingConstants.CENTER);
+		numero.setForeground(Color.WHITE);
 	}
 	
 	public void mouseClicked(MouseEvent e) {
