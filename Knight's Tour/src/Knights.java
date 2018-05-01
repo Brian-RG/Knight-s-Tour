@@ -5,12 +5,14 @@ import javax.swing.JFrame;
 
 public class Knights extends JFrame{
 	
-	public Tablero t = new Tablero();
+	public Tablero t;
 	
-	public PanelBotones botones = new PanelBotones(t);
+	public PanelBotones botones;
 	
 	public Knights() {
 		super();
+		t = new Tablero();
+		botones = new PanelBotones(t);
 		//this.setSize(960,800);
 		this.setVisible(true);
 		this.setResizable(false);

@@ -60,7 +60,12 @@ public class PanelBotones extends JPanel{
 				if(tablero.getCurrent() != null) {
 					Modelo modelo = new Modelo(8);
 					Stack<Point> stack = modelo.knightsTour(tablero.getCurrent().getPosX(), tablero.getCurrent().getPosY());
-					modelo.imprimeTablero();
+					tablero.resuelve(stack);
+					for(Cuadro[] c:tablero.getCuadros()) {
+						for(Cuadro d : c) {
+							d.deactivate();
+						}
+					}
 				}
 			}
 			
@@ -69,8 +74,7 @@ public class PanelBotones extends JPanel{
 		botonReiniciar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				tablero.setTablero();
-				Point p = new Point(tablero.getWidth(),tablero.getHeight());
+				tablero.reiniciarTablero();
 			}
 			
 		});

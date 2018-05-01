@@ -1,4 +1,5 @@
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Point;
@@ -20,7 +21,7 @@ public class Cuadro extends JButton implements MouseListener{
 	private boolean active=true;
 	private ImageIcon img,over,c;
 	private Tablero t;
-	JLabel numero ;
+	private JLabel numero;
 	public Cuadro(ImageIcon imagen, int x, int y,ImageIcon ovr, Tablero t, ImageIcon c) {
 		super(imagen);
 		this.setMargin(new Insets(0,0,0,0));
@@ -37,12 +38,9 @@ public class Cuadro extends JButton implements MouseListener{
 		numero.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
-	
-	
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(!e.getSource().equals(this.t.getCurrent())) {
-			this.setIcon(this.c);
+			this.pintacaballo();
 			if(t.getCurrent()!=null) {
 				t.getCurrent().setActive();
 				t.getCurrent().borracaballo();
@@ -50,10 +48,20 @@ public class Cuadro extends JButton implements MouseListener{
 			
 			t.setCurrent(this);
 			this.setActive();
-			System.out.println(t.getCurrent().id);
+			//System.out.println(t.getCurrent().id);
 		}
 	}
+	
+	public void pintacaballo() {
+		this.setIcon(this.c);
+	}
 
+	public void visitado(int num) {
+		this.borracaballo();
+		this.numero.setFont (this.numero.getFont().deriveFont(24.0f));
+		this.numero.setText(String.valueOf(num));
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		if(this.active) {	
@@ -65,7 +73,7 @@ public class Cuadro extends JButton implements MouseListener{
 	public void mouseExited(MouseEvent arg0) {
 		if(this.active) {
 			this.setIcon(this.img);
-			this.numero.setText("2");
+			this.numero.setText("");
 		}
 	}
 
@@ -84,6 +92,10 @@ public class Cuadro extends JButton implements MouseListener{
 	public void setActive() {
 		this.active=!this.active;
 	}
+	
+	public void deactivate() {
+		this.active=false;
+	}
 	public void borracaballo() {
 		this.setIcon(this.img);
 	}
@@ -94,6 +106,10 @@ public class Cuadro extends JButton implements MouseListener{
 	
 	public int getPosY() {
 		return this.posY;
+	}
+	
+	public void setNum() {
+		
 	}
 	
 }
