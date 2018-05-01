@@ -23,6 +23,7 @@ public class Tablero extends JPanel implements Runnable{
 	Thread animar;
 	Cuadro d;
 	Stack<Point> pasos;
+	int vel;
 	public Tablero() {
 		super();
 		
@@ -41,7 +42,7 @@ public class Tablero extends JPanel implements Runnable{
 		//this.animar.start();
 		current=null;
 		this.setTablero();
-		
+		this.vel=5;
 	}
 	
 	public void setTablero() {
@@ -85,12 +86,16 @@ public class Tablero extends JPanel implements Runnable{
 			//System.out.println("Entré");
 			current.pintacaballo();
 			try {
-				Thread.sleep(500);
+				Thread.sleep(1000 - (vel*100));
 			}
 			catch(Exception e) {
 				System.out.println("hola");
 			}
 		}
+	}
+	
+	public void setvel(int vel) {
+		this.vel=vel;
 	}
 	
 }

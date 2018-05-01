@@ -11,6 +11,8 @@ import java.util.Stack;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class PanelBotones extends JPanel{
 
@@ -21,6 +23,8 @@ public class PanelBotones extends JPanel{
 	JButton botonEmpezar,
 			botonReiniciar;
 	Tablero tablero;
+	
+	JSlider vel;
 	
 	public PanelBotones(Tablero tablero) {
 		super();
@@ -35,7 +39,7 @@ public class PanelBotones extends JPanel{
 		botonEmpezar = new JButton("Empezar");
 		botonReiniciar = new JButton("Reiniciar");
 		
-		this.setLayout(new GridLayout(3,1));
+		this.setLayout(new GridLayout(4,1));
 		
 		JPanel letras = new JPanel();
 		letras.setLayout(new GridLayout(3,1));
@@ -44,16 +48,27 @@ public class PanelBotones extends JPanel{
 		letras.add(lPor);
 		letras.add(lNombres);
 		letras.setBackground(new Color(7,99,36));
+		vel=new JSlider(JSlider.HORIZONTAL,0,9,5);
+		vel.setPaintTicks(true);
 		this.add(letras);
 		this.add(botonEmpezar);
 		this.add(botonReiniciar);
-		
+		this.add(vel);
 		lKnight.setFont(lKnight.getFont().deriveFont(24.0f));
 		lKnight.setForeground(Color.WHITE);
 		lPor.setForeground(Color.WHITE);
 		lNombres.setFont(lNombres.getFont().deriveFont(22.0f));
 		lNombres.setForeground(Color.WHITE);
-		
+		vel.setForeground(Color.WHITE);
+		vel.addChangeListener(new ChangeListener() {
+
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				tablero.setvel(vel.getValue());
+				
+			}
+			
+		});
 		botonEmpezar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
