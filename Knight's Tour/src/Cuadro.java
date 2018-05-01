@@ -8,6 +8,8 @@ import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Cuadro extends JButton implements MouseListener{
 	private int width=66;
@@ -17,6 +19,7 @@ public class Cuadro extends JButton implements MouseListener{
 	private boolean active=true;
 	private ImageIcon img,over,c;
 	private Tablero t;
+	JLabel numero ;
 	public Cuadro(ImageIcon imagen, int id,ImageIcon ovr, Tablero t,ImageIcon c) {
 		super(imagen);
 		this.setMargin(new Insets(0,0,0,0));
@@ -27,20 +30,26 @@ public class Cuadro extends JButton implements MouseListener{
 		this.c=c;
 		this.addMouseListener(this);
 		//this.setBounds(posX, posY, width, height);
+		numero= new JLabel("");
+		this.add(numero);
+		numero.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
 	
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		this.setIcon(this.c);
-		if(t.getCurrent()!=null) {
-			t.getCurrent().setActive();
-			t.getCurrent().borracaballo();
+	public void mouseClicked(MouseEvent e) {
+		if(!e.getSource().equals(this.t.getCurrent())) {
+			this.setIcon(this.c);
+			if(t.getCurrent()!=null) {
+				t.getCurrent().setActive();
+				t.getCurrent().borracaballo();
+			}
+			
+			t.setCurrent(this);
+			this.setActive();
+			System.out.println(t.getCurrent().id);
 		}
-		t.setCurrent(this);
-		this.setActive();
-		System.out.println(t.getCurrent().id);
 	}
 
 	@Override
@@ -54,6 +63,7 @@ public class Cuadro extends JButton implements MouseListener{
 	public void mouseExited(MouseEvent arg0) {
 		if(this.active) {
 			this.setIcon(this.img);
+			this.numero.setText("2");
 		}
 	}
 
