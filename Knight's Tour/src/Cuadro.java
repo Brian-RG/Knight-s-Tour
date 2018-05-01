@@ -9,6 +9,8 @@ import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 public class Cuadro extends JButton implements MouseListener{
 	private int width=66;
@@ -18,7 +20,12 @@ public class Cuadro extends JButton implements MouseListener{
 	private boolean active=true;
 	private ImageIcon img,over,c;
 	private Tablero t;
+<<<<<<< HEAD
 	public Cuadro(ImageIcon imagen, int x, int y,ImageIcon ovr, Tablero t, ImageIcon c) {
+=======
+	JLabel numero ;
+	public Cuadro(ImageIcon imagen, int id,ImageIcon ovr, Tablero t,ImageIcon c) {
+>>>>>>> e39a45fe0cdcddb990922e7db552828bffb8ed01
 		super(imagen);
 		this.setMargin(new Insets(0,0,0,0));
 		this.posX = x;
@@ -29,11 +36,15 @@ public class Cuadro extends JButton implements MouseListener{
 		this.c=c;
 		this.addMouseListener(this);
 		//this.setBounds(posX, posY, width, height);
+		numero= new JLabel("");
+		this.add(numero);
+		numero.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
 	
 	
 	@Override
+<<<<<<< HEAD
 	public void mouseClicked(MouseEvent arg0) {
 		Iterator<Cuadro> i =t.cuadros.iterator();
 		this.setIcon(this.c);
@@ -43,6 +54,20 @@ public class Cuadro extends JButton implements MouseListener{
 		}
 		t.setCurrent(this);
 		this.setActive();
+=======
+	public void mouseClicked(MouseEvent e) {
+		if(!e.getSource().equals(this.t.getCurrent())) {
+			this.setIcon(this.c);
+			if(t.getCurrent()!=null) {
+				t.getCurrent().setActive();
+				t.getCurrent().borracaballo();
+			}
+			
+			t.setCurrent(this);
+			this.setActive();
+			System.out.println(t.getCurrent().id);
+		}
+>>>>>>> e39a45fe0cdcddb990922e7db552828bffb8ed01
 	}
 
 	@Override
@@ -56,6 +81,7 @@ public class Cuadro extends JButton implements MouseListener{
 	public void mouseExited(MouseEvent arg0) {
 		if(this.active) {
 			this.setIcon(this.img);
+			this.numero.setText("2");
 		}
 	}
 
