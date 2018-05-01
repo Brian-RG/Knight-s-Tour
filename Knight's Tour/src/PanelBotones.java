@@ -61,6 +61,12 @@ public class PanelBotones extends JPanel{
 					Modelo modelo = new Modelo(8);
 					Stack<Point> stack = modelo.knightsTour(tablero.getCurrent().getPosX(), tablero.getCurrent().getPosY());
 					modelo.imprimeTablero();
+					tablero.resuelve(stack);
+					for(Cuadro[] c:tablero.getCuadros()) {
+						for(Cuadro d : c) {
+							d.Deactivate();
+						}
+					}
 				}
 			}
 			

@@ -1,4 +1,5 @@
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Point;
@@ -20,12 +21,8 @@ public class Cuadro extends JButton implements MouseListener{
 	private boolean active=true;
 	private ImageIcon img,over,c;
 	private Tablero t;
-<<<<<<< HEAD
+	JLabel numero;
 	public Cuadro(ImageIcon imagen, int x, int y,ImageIcon ovr, Tablero t, ImageIcon c) {
-=======
-	JLabel numero ;
-	public Cuadro(ImageIcon imagen, int id,ImageIcon ovr, Tablero t,ImageIcon c) {
->>>>>>> e39a45fe0cdcddb990922e7db552828bffb8ed01
 		super(imagen);
 		this.setMargin(new Insets(0,0,0,0));
 		this.posX = x;
@@ -43,21 +40,11 @@ public class Cuadro extends JButton implements MouseListener{
 	
 	
 	
-	@Override
-<<<<<<< HEAD
-	public void mouseClicked(MouseEvent arg0) {
-		Iterator<Cuadro> i =t.cuadros.iterator();
-		this.setIcon(this.c);
-		if(t.getCurrent()!=null) {
-			t.getCurrent().setActive();
-			t.getCurrent().borracaballo();
-		}
-		t.setCurrent(this);
-		this.setActive();
-=======
+
+
 	public void mouseClicked(MouseEvent e) {
 		if(!e.getSource().equals(this.t.getCurrent())) {
-			this.setIcon(this.c);
+			this.pintacaballo();
 			if(t.getCurrent()!=null) {
 				t.getCurrent().setActive();
 				t.getCurrent().borracaballo();
@@ -65,11 +52,20 @@ public class Cuadro extends JButton implements MouseListener{
 			
 			t.setCurrent(this);
 			this.setActive();
-			System.out.println(t.getCurrent().id);
+			//System.out.println(t.getCurrent().id);
 		}
->>>>>>> e39a45fe0cdcddb990922e7db552828bffb8ed01
+	}
+	
+	public void pintacaballo() {
+		this.setIcon(this.c);
 	}
 
+	public void visitado(int num) {
+		this.borracaballo();
+		this.numero.setFont (this.numero.getFont().deriveFont(24.0f));
+		this.numero.setText(String.valueOf(num));
+	}
+	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		if(this.active) {	
@@ -81,7 +77,7 @@ public class Cuadro extends JButton implements MouseListener{
 	public void mouseExited(MouseEvent arg0) {
 		if(this.active) {
 			this.setIcon(this.img);
-			this.numero.setText("2");
+			this.numero.setText("");
 		}
 	}
 
@@ -100,6 +96,10 @@ public class Cuadro extends JButton implements MouseListener{
 	public void setActive() {
 		this.active=!this.active;
 	}
+	
+	public void Deactivate() {
+		this.active=false;
+	}
 	public void borracaballo() {
 		this.setIcon(this.img);
 	}
@@ -110,6 +110,10 @@ public class Cuadro extends JButton implements MouseListener{
 	
 	public int getPosY() {
 		return this.posY;
+	}
+	
+	public void setNum() {
+		
 	}
 	
 }
