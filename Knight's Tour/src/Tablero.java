@@ -1,3 +1,8 @@
+// Brian Reyes - A01633401
+// Rafael Elu - A01634309
+// Clase: Tablero
+// 02 de mayo de 2018
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -23,6 +28,7 @@ public class Tablero extends JPanel implements Runnable{
 	Thread animar;
 	Cuadro d;
 	Stack<Point> pasos;
+	int vel;
 	public Tablero() {
 		super();
 		background = new ImageIcon("src/img/chessBoard.jpg").getImage();
@@ -39,7 +45,7 @@ public class Tablero extends JPanel implements Runnable{
 		//this.animar.start();
 		current=null;
 		this.setTablero();
-		
+		this.vel=5;
 	}
 	
 	public void setTablero() {
@@ -84,7 +90,7 @@ public class Tablero extends JPanel implements Runnable{
 			//System.out.println("Entr�");
 			current.pintacaballo();
 			try {
-				Thread.sleep(500);
+				Thread.sleep(1000 - (vel*100));
 			}
 			catch(Exception e) {
 				System.out.println("hola");
@@ -97,6 +103,9 @@ public class Tablero extends JPanel implements Runnable{
 		this.setTablero();
 		this.revalidate();
 		this.repaint();
+	}
+	public void setvel(int vel) {
+		this.vel=vel;
 	}
 	
 }

@@ -1,3 +1,8 @@
+// Brian Reyes - A01633401
+// Rafael Elu - A01634309
+// Clase: Cuadro
+// 02 de mayo de 2018
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
