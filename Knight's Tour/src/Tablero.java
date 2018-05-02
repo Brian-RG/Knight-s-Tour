@@ -31,14 +31,14 @@ public class Tablero extends JPanel implements Runnable{
 	int vel;
 	public Tablero() {
 		super();
-		background = new ImageIcon("src/img/chessBoard.jpg").getImage();
+		background = new ImageIcon("img/chessBoard.jpg").getImage();
 		
-		pre[0]=new ImageIcon("src/img/Cuadro.png");
-		pre[1]=new ImageIcon("src/img/oscuro.png");
-		over[0]=new ImageIcon("src/img/over.png");
-		over[1]=new ImageIcon("src/img/overn.png");
-		caballito[0]=new ImageIcon("src/img/caballo.png");
-		caballito[1]=new ImageIcon("src/img/cnegro.png");
+		pre[0]=new ImageIcon("img/Cuadro.png");
+		pre[1]=new ImageIcon("img/oscuro.png");
+		over[0]=new ImageIcon("img/over.png");
+		over[1]=new ImageIcon("img/overn.png");
+		caballito[0]=new ImageIcon("img/caballo.png");
+		caballito[1]=new ImageIcon("img/cnegro.png");
 		this.setPreferredSize(new Dimension(600,600));
 		this.setLayout(new GridLayout(8,8));
 		this.setBorder(BorderFactory.createEmptyBorder(36, 36, 36,36));
@@ -85,7 +85,8 @@ public class Tablero extends JPanel implements Runnable{
 	@Override
 	public void run() {
 		for(int i=1;i<64;i++) {
-			this.current.visitado(i);
+			if(this.current != null) {
+				this.current.visitado(i);
 			this.current=cuadros[this.pasos.peek().x][this.pasos.pop().y];
 			//System.out.println("Entr�");
 			current.pintacaballo();
@@ -94,6 +95,7 @@ public class Tablero extends JPanel implements Runnable{
 			}
 			catch(Exception e) {
 				System.out.println("hola");
+			}
 			}
 		}
 	}
